@@ -91,9 +91,20 @@
   !*** ./app.js ***!
   \****************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const {checkData , joiner } = __webpack_require__(/*! ./helper */ \"./helper.js\")\n\n\nconst initApp = ()=>{\n    const addUserBtn = document.querySelector('#addBtn')\n    addUserBtn.addEventListener('click' , ()=>{\n        AddUserList()\n    })\n\n}\n\n\nconst AddUserList = () =>{\n    const userNameElement = document.querySelector('#userNameInp') \n    const userAgeElement = document.querySelector('#userAgeInp') \n    const usersList = document.querySelector('#userList')\n    \n    \nif (checkData(userNameElement.value , userAgeElement.value)) {\n        const newElement = document.createElement('li')\n    newElement.innerText =joiner( userNameElement.value , userAgeElement.value )\n    usersList.append(newElement)\n}else{\n    alert('error')\n}\n\n}\n\n\n\n\n\ninitApp()\n\n//# sourceURL=webpack:///./app.js?");
+
+/***/ }),
+
+/***/ "./helper.js":
+/*!*******************!*\
+  !*** ./helper.js ***!
+  \*******************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const initApp = ()=>{\n    const addUserBtn = document.querySelector('#addBtn')\n    addUserBtn.addEventListener('click' , ()=>{\n        AddUserList()\n    })\n\n}\n\n\nconst AddUserList = () =>{\n    const userNameElement = document.querySelector('#userNameInp') \n    const userAgeElement = document.querySelector('#userAgeInp') \n    const usersList = document.querySelector('#userList')\n    \n    \n\n    const newElement = document.createElement('li')\n    newElement.innerText = userNameElement.value + ' ' + userAgeElement.value \n    usersList.append(newElement)\n}\n\n\n\n\n\ninitApp()\n\n//# sourceURL=webpack:///./app.js?");
+eval("//validator\nvalidator = (value , isNumber , notEmpty)=>{\n    //true true\n    if (isNumber && notEmpty) {\n        if (value.trim().length === 0) {\n            return false\n        }\n        if (isNaN(value)) {\n            return false\n        }\n        return true\n    }\n\n    //false true\n    if (!isNumber && notEmpty) {\n        if (value.trim().length === 0) {\n            return false\n        }\n        return true\n    }\n}\n\ncheckData = (userName , userAge)=>{\n      if(validator(userName , false , true) && validator(userAge , true , true)){\n            return true\n        }\n        return false\n}\n\n\n\nconst joiner = (name , age)=>{\n    return ('user name is ' + name + ',and age ' + age)\n}\n\n\n//validator('shirin' ,false , true)\n\nmodule.exports = {\n    validator,\n    checkData,\n    joiner\n}\n\n//# sourceURL=webpack:///./helper.js?");
 
 /***/ })
 
